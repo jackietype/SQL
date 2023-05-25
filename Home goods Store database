@@ -1,0 +1,28 @@
+- creating a store database for home goods -
+
+CREATE TABLE Homegoods_Store (id INTEGER PRIMARY KEY, name TEXT, aisle INTEGER, price INTEGER);
+
+INSERT INTO Homegoods_Store VALUES (1, 'Outdoor_Furniture_Set', 1, 700); 
+INSERT INTO Homegoods_Store VALUES (2, 'Rugs', 4, 90);
+INSERT INTO Homegoods_Store VALUES (3, 'Office_Supplies', 7, 150);
+INSERT INTO Homegoods_Store VALUES (4, 'Cleaning_Supplies', 3, 40);
+INSERT INTO Homegoods_Store VALUES (5, 'Lights', 2, 80);
+INSERT INTO Homegoods_Store VALUES (6, 'Chairs', 5, 100);
+INSERT INTO Homegoods_Store VALUES (7, 'Computers', 8, 1000);
+INSERT INTO Homegoods_Store VALUES (8, 'Toiletries', 11, 30);
+INSERT INTO Homegoods_Store VALUES (9, 'Curtains', 12, 45);
+INSERT INTO Homegoods_Store VALUES (10, 'Cookware', 6, 60);
+INSERT INTO Homegoods_Store VALUES (11, 'Vacuums', 9, 60);
+INSERT INTO Homegoods_Store VALUES (12, 'Tables', 15, 800);
+INSERT INTO Homegoods_Store VALUES (13, 'Gardening_Tools', 14, 300);
+INSERT INTO Homegoods_Store VALUES (14, 'Stoves', 13, 1200);
+INSERT INTO Homegoods_Store VALUES (15, 'Bedroom_Items', 10, 500);
+
+- Showing database by price - 
+
+SELECT * FROM Homegoods_Store ORDER BY price;
+
+- Showing which items have purchases less than 50 -
+
+SELECT * FROM Homegoods_Store WHERE purchases < 50
+ORDER BY name; 
