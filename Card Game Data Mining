@@ -1,0 +1,30 @@
+/* Card game database */ 
+
+SELECT * FROM card_games; 
+
+SELECT MIN(date_played) FROM card_games;
+SELECT MAX(date_played) FROM card_games;
+
+SELECT player_name, game_name FROM card_games;
+
+SELECT MAX(score) FROM card_games;
+SELECT MIN(score) FROM card_games;
+
+SELECT player_name, game_name, score FROM card_games WHERE score < 100; 
+
+SELECT player_name, game_name, score, 
+CASE 
+WHEN score < 100 THEN "low_player_score" 
+WHEN score > 500 THEN "high_player_score" 
+ELSE "mid_player_score"
+END AS "Player_Scores" 
+FROM card_games; 
+
+SELECT COUNT(game_name) AS "Games_Winston_Played" FROM card_games
+GROUP BY game_name
+HAVING player_name = "Winston"
+
+/* Filtering the games played by only Amelia and Hopper */
+
+SELECT * FROM card_games WHERE player_name = 'Amelia' OR player_name = 'Hopper';
+
