@@ -1,0 +1,71 @@
+create table MovieActors (ID INTEGER, Name TEXT, Age INTEGER, Married TEXT);
+
+Insert into MovieActors VALUES 
+(1, "John Cena", 46, "Yes"),
+(2, "Henry Cavill", 40, "No"),
+(3, "Jennifer Garner", 51, "Yes"),
+(4, "Chris Evans", 41, "No"),
+(5, "Evan Peters", 36, "No"),
+(6, "Sandra Bullock", 58, "Yes"),
+(7, "Charlize Theron", 47, "No"),
+(8, "Tom Holland", 26, "No"),
+(9, "Anne Hathaway", 40, "Yes"),
+(10, "Sarah Paulson", 48, "Yes"),
+(11, "Johnny Depp", 50, "No");
+
+create table Movies (ID INTEGER, Title TEXT, Gross_Worth INTEGER);
+
+Insert into Movies VALUES
+(1, "Fast Nine", 726000),
+(2, "BvS Dawn of Justice", 873600000),
+(3, NULL, NULL),
+(4, "Avengers: End Game", 2700000000),
+(5, NULL, NULL),
+(6, "Gravity", 723000000),
+(7, NULL, NULL),
+(8, "Avengers: End Game", 858373000),
+(9, "Dark Knight Rises", 1000000000),
+(10, NULL, NULL),
+(11, "PoTC: Dead Man's Chest", 1006000000);
+
+create table Category (ID INTEGER, Genre TEXT);
+
+Insert into Category VALUES
+(1, "Comedy"),
+(2, "Action"),
+(3, "Drama"),
+(4, "Action"),
+(5, "Crime Drama"),
+(6, "Drama Comedy"),
+(7, "Sci Fi"),
+(8, "Action"),
+(9, "Romance"),
+(10, "Drama"),
+(11, "Action");
+
+/* Sorting the highest grossing movie from each actor to least or unknown */
+
+Select a.name, b.title AS Movie_Title, b.gross_worth AS Movie_Gross FROM MovieActors AS a
+Join Movies as b 
+ON a.id = b.id
+Join Category AS c
+ON a.id = c.id
+GROUP BY a.name
+ORDER BY gross_worth desc;
+
+/* Finding the generation for each actor */
+
+SELECT Name, Age,
+    CASE  WHEN age >40 THEN "Gen X"
+          WHEN age <25 THEN "Gen Z"
+          WHEN age BETWEEN 25 AND 40 THEN "Gen Y"
+          ELSE "UNKNOWN"
+          END AS "Generation"
+FROM MovieActors
+GROUP BY name;
+
+/* Only listing each actor's married status */
+
+SELECT Name, Married AS Marital_Status FROM MovieActors
+GROUP BY name
+ORDER BY married;
