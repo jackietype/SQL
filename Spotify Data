@@ -1,0 +1,51 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# I created a table to insert Spotify data into and performed analytics on the data using SQL. 
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+# I created a table with the Spotify Data .csv 
+
+# Then, I inquired on which artists had the most popularity and limited the search results to 10. 
+Select max(spotifydata.popularity), spotifydata.artist_name from BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY popularity desc
+LIMIT 10;
+
+# I checked which artists had the shortest songs
+SELECT spotifydata.artist_name as Artist, min(spotifydata.duration_ms) as Shortest_Song, spotifydata.track_name
+from BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY duration_ms asc
+LIMIT 10;
+
+# I determined which song had the average danceablity and energy from the list
+select avg(spotifydata.danceability) as dancebility, spotifydata.energy as energy, spotifydata.track_name
+from bit_db.Spotifydata;
+
+# I checked how many songs the artist Dua Lipa had on the list
+select spotifydata.artist_name, spotifydata.track_name 
+from BIT_DB.Spotifydata
+WHERE artist_name = 'Dua Lipa';
+
+
+
